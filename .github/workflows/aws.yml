@@ -1,0 +1,21 @@
+name: deploy to tencent
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 切换分支
+      - name: Checkout
+        uses: actions/checkout@v2.4.2
+      - name: use Node.js 14
+        uses: actions/setup-node@v3.1.1
+        with:
+          node-version: 14.x
+      # run node
+      - name: run node
+        run: node src/index.js
+        env:
+          CI: true
